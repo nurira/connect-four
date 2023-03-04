@@ -1,7 +1,18 @@
 import styled from "styled-components/macro";
 
+import Text from "./Text";
+
 function App() {
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <Button>
+        <Text>Play vs. Player</Text>
+      </Button>
+      <Button>
+        <Text>Game Rules</Text>
+      </Button>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div`
@@ -13,6 +24,19 @@ const Wrapper = styled.div`
 
   filter: var(--drop-shadow-black);
   margin: 0 auto;
+
+  padding: 70px 40px;
+`;
+
+const Button = styled.button`
+  height: 72px;
+  width: 100%;
+  border-radius: 20px;
+  border: var(--border);
+  font-size: var(--text-md);
+  background-color: var(--color-tertiary);
+  text-transform: uppercase;
+  filter: var(--drop-shadow-black);
 `;
 
 export default App;
