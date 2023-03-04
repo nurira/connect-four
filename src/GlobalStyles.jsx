@@ -13,6 +13,10 @@ const GlobalStyles = createGlobalStyle`
     --color-white: hsl(0 0% 100% / 1);
 
     --font-family: "Space GroteskVariable";
+    --font-weight-normal: 400;
+
+    --drop-shadow-black: drop-shadow(0 10px 0 var(--color-black));
+    --drop-shadow-primary: drop-shadow(0 10px 0 var(--color-primary));
   }
 
   *,
@@ -36,7 +40,10 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: var(--font-family), sans-serif;
     font-weight: var(--font-weight-normal, 400);
-    line-height: calc(21 / 16 );
+    line-height: calc(21 / 16);
+    background: var(--color-primary);
+    color: var(--color-white);
+    height: 100%;
   }
 
   img {
