@@ -4,8 +4,13 @@ import "@fontsource/space-grotesk/variable.css";
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --color-primary: red;
-    --color-secondary: blue;
+    --color-primary: hsl(257 67% 51% / 1);
+    --color-primary-light: hsl(257 100% 64% / 1);
+    --color-secondary: hsl(347 97% 70% / 1);
+    --color-tertiary: hsl(41 100% 70% / 1);
+
+    --color-black: hsl(0 0% 0% / 1);
+    --color-white: hsl(0 0% 100% / 1);
 
     --font-family: "Space GroteskVariable";
   }
@@ -31,7 +36,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family: var(--font-family), sans-serif;
     font-weight: var(--font-weight-normal, 400);
-    line-height: 1.5;
+    line-height: calc(21 / 16 );
   }
 
   img {
