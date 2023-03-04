@@ -14,7 +14,9 @@ const GlobalStyles = createGlobalStyle`
 
     --font-family: "Space GroteskVariable";
     --font-weight-normal: 400;
+    --font-weight-bold: 700;
 
+    --border: 3px solid;
     --drop-shadow-black: drop-shadow(0 10px 0 var(--color-black));
     --drop-shadow-primary: drop-shadow(0 10px 0 var(--color-primary));
   }
