@@ -1,9 +1,13 @@
 import { createGlobalStyle } from "styled-components/macro";
 
+import "@fontsource/space-grotesk/variable.css";
+
 const GlobalStyles = createGlobalStyle`
   :root {
     --color-primary: red;
     --color-secondary: blue;
+
+    --font-family: "Space GroteskVariable";
   }
 
   *,
