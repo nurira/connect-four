@@ -7,29 +7,31 @@ export default function Text({ size = "md", children }) {
     sm: TextSM,
     xs: TextXS,
   };
-  const Tag = SIZES[size] ? SIZES[size] : TextMedium;
 
+  const Tag = SIZES[size] ? SIZES[size] : TextMedium;
   return <Tag>{children}</Tag>;
 }
 
-const TextLG = styled.span`
+const TextBase = styled.span`
+  font-weight: var(--font-weight-bold);
+`;
+
+const TextLG = styled(TextBase)`
   font-size: ${56 / 16}rem;
   line-height: ${71 / 16}rem;
-  font-weight: var(--font-weight-bold);
 `;
 
-const TextMD = styled.span`
+const TextMD = styled(TextBase)`
   font-size: ${24 / 16}rem;
   line-height: ${31 / 16}rem;
-  font-weight: var(--font-weight-bold);
 `;
 
-const TextSM = styled.span`
+const TextSM = styled(TextBase)`
   font-size: ${20 / 16}rem;
   line-height: ${26 / 16}rem;
 `;
 
-const TextXS = styled.span`
+const TextXS = styled(TextBase)`
   font-size: ${16 / 16}rem;
   line-height: ${21 / 16}rem;
 `;
