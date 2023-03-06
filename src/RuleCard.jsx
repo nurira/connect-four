@@ -134,6 +134,8 @@ const ConfirmButton = styled.button`
   left: 50%;
   transform: translate(-50%, 50%);
   filter: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
   svg {
     width: 64px;
