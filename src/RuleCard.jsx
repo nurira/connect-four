@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 import { BREAKPOINTS } from "./GlobalStyles";
 
 import Text from "./Text";
-import ConfirmButton from "./ConfirmButton";
+import { ConfirmButton } from "./Button";
 
 const RULES = [
   `Red goes first in the first game.`,
