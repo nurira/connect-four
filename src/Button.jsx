@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-export default function Button({ type = "default", children }) {
+export default function Button({ type = "default", children, ...delegated }) {
   const BUTTONS = {
     default: BaseButton,
     primary: PrimaryButton,
@@ -9,7 +9,7 @@ export default function Button({ type = "default", children }) {
   };
 
   const Tag = BUTTONS[type] ? BUTTONS[type] : BaseButton;
-  return <Tag>{children}</Tag>;
+  return <Tag {...delegated}>{children}</Tag>;
 }
 
 const BaseButton = styled.button`
