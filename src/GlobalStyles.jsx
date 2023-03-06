@@ -19,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
 
     --font-family: "Space GroteskVariable";
     --font-weight-normal: 400;
-    --font-weight-bold: 600;
+    --font-weight-bold: 700;
 
     --border: 3px solid;
     --drop-shadow-black: drop-shadow(0 10px 0 var(--color-black));
@@ -49,7 +49,7 @@ const GlobalStyles = createGlobalStyle`
     font-weight: var(--font-weight-normal, 400);
     line-height: calc(21 / 16);
     background: var(--color-primary);
-    color: var(--color-white);
+    color: var(--color-black);
     height: 100%;
   }
 
