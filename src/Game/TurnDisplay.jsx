@@ -6,7 +6,7 @@ export default function TurnDisplay({ player }) {
   return (
     <Wrapper player={player}>
       <TurnText size="xs">Player {player}'s Turn</TurnText>
-      <Text size="lg">14s</Text>
+      <Timer size="lg">14s</Timer>
     </Wrapper>
   );
 }
@@ -26,6 +26,9 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 45px 30px 16px 30px;
 
+  color: ${({ player }) =>
+    player === 1 ? "var(--color-white)" : "var(--color-black)"};
+
   @media ${BREAKPOINTS.tablet} {
     transform: translateY(-53px);
   }
@@ -33,4 +36,9 @@ const Wrapper = styled.div`
 
 const TurnText = styled(Text)`
   text-transform: uppercase;
+  /* color: var(--color-white); */
+`;
+
+const Timer = styled(Text)`
+  /* color: var(--color-white); */
 `;
