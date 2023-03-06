@@ -76,6 +76,7 @@ const Heading = styled(Text).attrs((props) => ({
   text-align: center;
   text-transform: uppercase;
   font-weight: var(--font-weight-bold);
+  color: var(--color-black);
 `;
 
 const Subheading = styled(Text).attrs((props) => ({
