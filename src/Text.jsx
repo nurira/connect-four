@@ -14,6 +14,7 @@ export default function Text({ size = "md", children, ...delegated }) {
 
 const TextBase = styled.span`
   color: var(--color-black);
+  font-family: var(--font-family);
   font-weight: var(--font-weight-bold);
 `;
 
