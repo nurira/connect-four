@@ -16,9 +16,10 @@ const BaseButton = styled.button`
   cursor: pointer;
   width: 100%;
   display: block;
-  height: ${72 / 16}rem;
+  height: ${78 / 16}rem;
   border-radius: 20px;
   border: var(--border);
+  border-color: var(--color-black);
   font-size: var(--text-md);
   text-transform: uppercase;
   filter: var(--drop-shadow-black);
@@ -26,6 +27,7 @@ const BaseButton = styled.button`
 
   &:hover {
     filter: var(--drop-shadow-primary);
+    border-color: var(--color-primary);
   }
 `;
 
