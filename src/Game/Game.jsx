@@ -6,19 +6,24 @@ import Board from "./Board";
 import ScoreDisplay from "./ScoreDisplay";
 import TurnDisplay from "./TurnDisplay";
 import { BREAKPOINTS } from "../GlobalStyles";
+import { PillButton } from "../Button/PillButton";
 
 export default function Game() {
   return (
     <Wrapper>
       <MaxWidthContainer>
         <Header>
-          <GameButton>
-            <Text size="xs">Menu</Text>
-          </GameButton>
+          <PillButton>
+            <Text size="xs" style={{ color: "white" }}>
+              Menu
+            </Text>
+          </PillButton>
           <Logo size={46} />
-          <GameButton>
-            <Text size="xs">Restart</Text>
-          </GameButton>
+          <PillButton>
+            <Text size="xs" style={{ color: "white" }}>
+              Restart
+            </Text>
+          </PillButton>
         </Header>
         <PlayerScores>
           <ScoreDisplay player={1} score={12} />
@@ -26,7 +31,7 @@ export default function Game() {
         </PlayerScores>
         <BoardWrapper>
           <Board />
-          <TurnDisplay player={1} />
+          <TurnDisplay player={2} />
         </BoardWrapper>
       </MaxWidthContainer>
     </Wrapper>
