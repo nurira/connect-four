@@ -24,6 +24,7 @@ const BaseButton = styled.button`
   text-transform: uppercase;
   filter: var(--drop-shadow-black);
   background: var(--color-white);
+  color: var(--color-black);
 
   &:hover {
     filter: var(--drop-shadow-primary);
