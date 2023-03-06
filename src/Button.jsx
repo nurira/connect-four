@@ -25,8 +25,12 @@ const BaseButton = styled.button`
   filter: var(--drop-shadow-black);
   background: var(--color-white);
   color: var(--color-black);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     filter: var(--drop-shadow-primary);
     border-color: var(--color-primary);
   }
