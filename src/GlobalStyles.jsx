@@ -2,6 +2,11 @@ import { createGlobalStyle } from "styled-components/macro";
 
 import "@fontsource/space-grotesk/variable.css";
 
+export const BREAKPOINTS = {
+  tablet: `(min-width: ${768 / 16}rem)`,
+  desktop: `(min-width: ${1440 / 16}rem)`,
+};
+
 const GlobalStyles = createGlobalStyle`
   :root {
     --color-primary: hsl(257 67% 51% / 1);
@@ -14,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
 
     --font-family: "Space GroteskVariable";
     --font-weight-normal: 400;
-    --font-weight-bold: 700;
+    --font-weight-bold: 600;
 
     --border: 3px solid;
     --drop-shadow-black: drop-shadow(0 10px 0 var(--color-black));
