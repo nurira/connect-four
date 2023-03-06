@@ -4,7 +4,7 @@ import Text from "../Text";
 
 export default function ScoreDisplay({ score, player }) {
   return (
-    <Wrapper>
+    <Wrapper player={player}>
       <PlayerTag size="xs" forwardedAs="p">
         Player {player}
       </PlayerTag>
@@ -29,6 +29,16 @@ const Wrapper = styled.div`
   padding: 10px;
   position: relative;
 
+  @media ${BREAKPOINTS.tablet} {
+    height: 106px;
+    width: 278px;
+    display: flex;
+    flex-direction: ${({ player }) => (player === 1 ? "row" : "row-reverse")};
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
+  }
+
   @media ${BREAKPOINTS.desktop} {
     height: 166px;
     width: 147px;
@@ -39,6 +49,11 @@ const Wrapper = styled.div`
 const PlayerTag = styled(Text)`
   text-transform: uppercase;
   text-align: center;
+
+  @media ${BREAKPOINTS.tablet} {
+    font-size: ${20 / 16}rem;
+    line-height: 1;
+  }
 
   @media ${BREAKPOINTS.desktop} {
     font-size: ${20 / 16}rem;
@@ -52,6 +67,11 @@ const Score = styled.p`
   line-height: 1;
   font-weight: var(--font-weight-bold);
   color: var(--color-black);
+
+  @media ${BREAKPOINTS.tablet} {
+    font-size: ${56 / 16}rem;
+    line-height: 1;
+  }
 
   @media ${BREAKPOINTS.desktop} {
     font-size: ${56 / 16}rem;
