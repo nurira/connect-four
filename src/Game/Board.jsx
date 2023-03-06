@@ -32,10 +32,11 @@ export default function Board() {
 }
 
 const Wrapper = styled.div`
-  margin: 0 auto;
-
   isolation: isolate;
   position: relative;
+
+  width: fit-content;
+  margin: 0 auto;
 `;
 
 const Background = styled.picture``;
