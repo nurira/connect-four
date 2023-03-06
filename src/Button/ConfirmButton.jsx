@@ -61,7 +61,6 @@ const Wrapper = styled.button`
   }
 
   &:hover,
-  &:focus,
   &:active {
     .outline,
     .shadow {

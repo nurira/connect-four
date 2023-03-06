@@ -24,7 +24,7 @@ const Wrapper = styled.button`
   -webkit-tap-highlight-color: transparent;
 
   &:hover,
-  &:focus {
+  &:active {
     background: var(--color-secondary);
   }
 `;
