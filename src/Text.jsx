@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-export default function Text({ size = "md", children }) {
+export default function Text({ size = "md", children, ...delegated }) {
   const SIZES = {
     lg: TextLG,
     md: TextMD,
@@ -9,7 +9,7 @@ export default function Text({ size = "md", children }) {
   };
 
   const Tag = SIZES[size] ? SIZES[size] : TextMedium;
-  return <Tag>{children}</Tag>;
+  return <Tag {...delegated}>{children}</Tag>;
 }
 
 const TextBase = styled.span`
