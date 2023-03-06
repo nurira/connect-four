@@ -7,7 +7,7 @@ export default function App() {
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   const handlePlay = () => {
-    setIsPlaying(true);
+    setIsPlaying(!isPlaying);
   };
 
   const handleRules = () => {
@@ -15,7 +15,7 @@ export default function App() {
   };
 
   return isPlaying ? (
-    <RuleCard />
+    <RuleCard onClick={handlePlay} />
   ) : (
     <StartMenu onPlayGame={handlePlay} onShowRules={handleRules} />
   );
