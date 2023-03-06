@@ -1,22 +1,17 @@
 import styled from "styled-components/macro";
 
+import Game from "./Game";
 import RuleCard from "./RuleCard";
 import StartMenu from "./StartMenu";
 
+import useToggle from "./hooks/useToggle";
+
 export default function App() {
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [isPlaying, togglePlaying] = useToggle(false);
+  const [showRules, toggleRules] = useToggle(false);
 
-  const handlePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
+  if (showRules) return <RuleCard onConfirm={toggleRules} />;
+  if (isPlaying) return <Game />;
 
-  const handleRules = () => {
-    setIsPlaying(true);
-  };
-
-  return isPlaying ? (
-    <RuleCard onClick={handlePlay} />
-  ) : (
-    <StartMenu onPlayGame={handlePlay} onShowRules={handleRules} />
-  );
+  return <StartMenu onPlayGame={togglePlaying} onShowRules={toggleRules} />;
 }
