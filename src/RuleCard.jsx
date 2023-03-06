@@ -4,6 +4,14 @@ import { BREAKPOINTS } from "./GlobalStyles";
 import Text from "./Text";
 import ConfirmButton from "./ConfirmButton";
 
+const RULES = [
+  `Red goes first in the first game.`,
+  `Players must alternate turns, and only one disc can be dropped in
+  each turn.`,
+  `The game ends when there is a 4-in-a-row or a stalemate.`,
+  `The starter of the previous game goes second on the next game.`,
+];
+
 export default function RuleCard({ onConfirm }) {
   return (
     <Wrapper>
@@ -20,25 +28,11 @@ export default function RuleCard({ onConfirm }) {
       <div>
         <Subheading>How to Play</Subheading>
         <RuleList>
-          <Rule>
-            <span>Red goes first in the first game.</span>
-          </Rule>
-          <Rule>
-            <span>
-              Players must alternate turns, and only one disc can be dropped in
-              each turn.
-            </span>
-          </Rule>
-          <Rule>
-            <span>
-              The game ends when there is a 4-in-a-row or a stalemate.
-            </span>
-          </Rule>
-          <Rule>
-            <span>
-              The starter of the previous game goes second on the next game.
-            </span>
-          </Rule>
+          {RULES.map((r, idx) => (
+            <Rule key={idx}>
+              <span>{r}</span>
+            </Rule>
+          ))}
         </RuleList>
       </div>
       <ConfirmButton onClick={onConfirm} />
