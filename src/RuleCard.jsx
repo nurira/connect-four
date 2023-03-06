@@ -2,8 +2,9 @@ import styled from "styled-components/macro";
 import { BREAKPOINTS } from "./GlobalStyles";
 
 import Text from "./Text";
+import ConfirmButton from "./ConfirmButton";
 
-export default function RuleCard({ onClick }) {
+export default function RuleCard({ onConfirm }) {
   return (
     <Wrapper>
       <div>
@@ -40,58 +41,7 @@ export default function RuleCard({ onClick }) {
           </Rule>
         </RuleList>
       </div>
-      <ConfirmButton onClick={onClick}>
-        {/* <img src="./assets/icon-check.svg" alt="check mark button" /> */}
-        <svg
-          width="70px"
-          height="75px"
-          viewBox="0 0 70 75"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <title>icon-check</title>
-          <g
-            id="Designs"
-            stroke="none"
-            stroke-width="1"
-            fill="none"
-            fill-rule="evenodd"
-          >
-            <g id="icon-check">
-              <circle
-                className="outline"
-                id="Oval-Copy-37"
-                fill="#000000"
-                cx="35"
-                cy="35"
-                r="35"
-              ></circle>
-              <circle
-                className="shadow"
-                id="Oval-Copy-38"
-                fill="#000000"
-                cx="35"
-                cy="40"
-                r="35"
-              ></circle>
-              <circle
-                id="Oval-Copy-39"
-                fill="#FD6687"
-                cx="35"
-                cy="35"
-                r="32"
-              ></circle>
-              <polyline
-                id="Path"
-                stroke="#FFFFFF"
-                stroke-width="3"
-                points="20 34.5819497 30.2640104 44.84596 50.1099704 25"
-              ></polyline>
-            </g>
-          </g>
-        </svg>
-      </ConfirmButton>
+      <ConfirmButton onClick={onConfirm} />
     </Wrapper>
   );
 }
@@ -122,32 +72,6 @@ const Wrapper = styled.div`
   @media ${BREAKPOINTS.tablet} {
     width: 486px;
     padding-inline: 34px;
-  }
-`;
-
-const ConfirmButton = styled.button`
-  cursor: pointer;
-  border: none;
-  background: none;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  filter: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-
-  svg {
-    width: 64px;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    .outline,
-    .shadow {
-      fill: var(--color-primary-light);
-    }
   }
 `;
 
