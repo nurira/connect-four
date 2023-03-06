@@ -13,6 +13,7 @@ export default function Text({ size = "md", children, ...delegated }) {
 }
 
 const TextBase = styled.span`
+  color: var(--color-black);
   font-weight: var(--font-weight-bold);
 `;
 
