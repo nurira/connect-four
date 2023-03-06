@@ -20,7 +20,6 @@ const BaseButton = styled.button`
   border-radius: 20px;
   border: var(--border);
   border-color: var(--color-black);
-  font-size: var(--text-md);
   text-transform: uppercase;
   filter: var(--drop-shadow-black);
   background: var(--color-white);
