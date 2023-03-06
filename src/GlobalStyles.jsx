@@ -16,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
 
     --color-black: hsl(0 0% 0% / 1);
     --color-white: hsl(0 0% 100% / 1);
+    --color-text: hsl(0 0% 0% / 0.66);
 
     --font-family: "Space GroteskVariable";
     --font-weight-normal: 400;
@@ -49,7 +50,7 @@ const GlobalStyles = createGlobalStyle`
     font-weight: var(--font-weight-normal, 400);
     line-height: calc(21 / 16);
     background: var(--color-primary);
-    color: var(--color-black);
+    color: var(--color-text);
     height: 100%;
   }
 
