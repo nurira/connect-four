@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-export default function ConfirmButton({ ...delegated }) {
+export function ConfirmButton({ ...delegated }) {
   return (
     <Wrapper {...delegated}>
       <ConfirmIcon />
