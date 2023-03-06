@@ -42,7 +42,12 @@ const Wrapper = styled.div`
   @media ${BREAKPOINTS.desktop} {
     height: 166px;
     width: 147px;
-    padding-top: 43px;
+    padding-top: 38px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
   }
 `;
 
