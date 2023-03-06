@@ -5,18 +5,18 @@ import Logo from "./Logo";
 import Button from "./Button";
 import Text from "./Text";
 
-export default function StartMenu() {
+export default function StartMenu({ onPlayGame, onShowRules }) {
   return (
     <Wrapper>
       <LogoWrapper>
         <Logo size={60} />
       </LogoWrapper>
       <Actions>
-        <Button type="tertiary">
-          <Text>Play vs. Player</Text>
+        <Button type="tertiary" onClick={onPlayGame}>
+          <Text size="md">Play vs. Player</Text>
         </Button>
-        <Button>
-          <Text>Game Rules</Text>
+        <Button type="default" onClick={onShowRules}>
+          <Text size="md">Game Rules</Text>
         </Button>
       </Actions>
     </Wrapper>
