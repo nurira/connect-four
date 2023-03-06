@@ -6,6 +6,5 @@ export default function useToggle(initialState = false) {
   }
 
   const [toggle, setToggle] = React.useState(initialState);
-
-  return [toggle, () => setToggle(!toggle)];
+  return [toggle, () => setToggle((v) => !v)];
 }

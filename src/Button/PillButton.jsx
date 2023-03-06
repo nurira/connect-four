@@ -1,8 +1,14 @@
 import styled from "styled-components/macro";
 
-export function PillButton({ children, ...delegated }) {
-  return <Wrapper {...delegated}>{children}</Wrapper>;
-}
+export const PillButton = React.forwardRef(
+  ({ children, ...delegated }, ref) => {
+    return (
+      <Wrapper ref={ref} {...delegated}>
+        {children}
+      </Wrapper>
+    );
+  }
+);
 
 const Wrapper = styled.button`
   cursor: pointer;
@@ -18,7 +24,6 @@ const Wrapper = styled.button`
   -webkit-tap-highlight-color: transparent;
 
   &:hover,
-  &:active,
   &:focus {
     background: var(--color-secondary);
   }

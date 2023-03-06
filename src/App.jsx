@@ -11,7 +11,7 @@ export default function App() {
   const [showRules, toggleRules] = useToggle(false);
 
   if (showRules) return <RuleCard onConfirm={toggleRules} />;
-  if (isPlaying) return <Game />;
+  if (isPlaying) return <Game togglePlaying={togglePlaying} />;
 
   return <StartMenu onPlayGame={togglePlaying} onShowRules={toggleRules} />;
 }

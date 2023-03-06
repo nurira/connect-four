@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-export default function Button({ type = "default", children, ...delegated }) {
+function Button({ type = "default", children, ...delegated }, ref) {
   const BUTTONS = {
     default: BaseButton,
     primary: PrimaryButton,
@@ -9,7 +9,11 @@ export default function Button({ type = "default", children, ...delegated }) {
   };
 
   const Tag = BUTTONS[type] ? BUTTONS[type] : BaseButton;
-  return <Tag {...delegated}>{children}</Tag>;
+  return (
+    <Tag ref={ref} {...delegated}>
+      {children}
+    </Tag>
+  );
 }
 
 const BaseButton = styled.button`
@@ -46,3 +50,5 @@ const SecondaryButton = styled(BaseButton)`
 const TertiaryButton = styled(BaseButton)`
   background: var(--color-tertiary);
 `;
+
+export default React.forwardRef(Button);

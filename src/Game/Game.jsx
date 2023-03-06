@@ -1,23 +1,20 @@
 import styled from "styled-components/macro";
+import { BREAKPOINTS } from "../GlobalStyles";
 
 import Text from "../Text";
 import Logo from "../Logo";
 import Board from "./Board";
 import ScoreDisplay from "./ScoreDisplay";
 import TurnDisplay from "./TurnDisplay";
-import { BREAKPOINTS } from "../GlobalStyles";
 import { PillButton } from "../Button/PillButton";
+import GameMenu from "../GameMenu";
 
-export default function Game() {
+export default function Game({ togglePlaying }) {
   return (
     <Wrapper>
       <MaxWidthContainer>
         <Header>
-          <PillButton>
-            <Text size="xs" style={{ color: "white" }}>
-              Menu
-            </Text>
-          </PillButton>
+          <GameMenu onRestart={togglePlaying} onQuit={togglePlaying} />
           <Logo size={46} />
           <PillButton>
             <Text size="xs" style={{ color: "white" }}>
@@ -86,21 +83,6 @@ const PlayerScores = styled.div`
     left: 0;
     right: 0;
     justify-content: space-between;
-  }
-`;
-
-const GameButton = styled.button`
-  border-radius: 20px;
-  background: var(--color-primary);
-  padding: 10px;
-  border: none;
-
-  width: ${108 / 16}rem;
-  font-family: "Space GroteskVariable";
-
-  span {
-    color: var(--color-white);
-    text-transform: uppercase;
   }
 `;
 
