@@ -12,11 +12,13 @@ import GameMenu from "../GameMenu";
 
 import useToggle from "../hooks/useToggle";
 
+const [PLAYER_RED, PLAYER_YELLOW] = [1, 2];
+const STARTING_PLAYER = PLAYER_RED;
 const TIME_PER_TURN = 15;
 
 export default function Game({ togglePlaying }) {
   const [winner, setWinner] = React.useState(null);
-  const [currentPlayer, setCurrentPlayer] = React.useState(1);
+  const [currentPlayer, setCurrentPlayer] = React.useState(STARTING_PLAYER);
   const [boardState, setBoardState] = React.useState(
     Array(7)
       .fill(null)
@@ -26,6 +28,7 @@ export default function Game({ togglePlaying }) {
   const [playerTwoScore, setPlayerTwoScore] = React.useState(0);
   const [timeRemaining, setTimeRemaining] = React.useState(TIME_PER_TURN);
   const [paused, togglePaused] = useToggle(false);
+  const startingPlayer = React.useRef(STARTING_PLAYER);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -113,7 +116,7 @@ export default function Game({ togglePlaying }) {
 
     if (checkForWin(nextBoardState, colNum)) {
       setWinner(currentPlayer);
-      currentPlayer === 1
+      currentPlayer === PLAYER_RED
         ? setPlayerOneScore(playerOneScore + 1)
         : setPlayerTwoScore(playerTwoScore + 1);
       togglePaused();
@@ -126,13 +129,19 @@ export default function Game({ togglePlaying }) {
 
   function handleRestart() {
     if (paused) togglePaused();
+
+    const nextPlayer =
+      startingPlayer.current === PLAYER_RED ? PLAYER_YELLOW : PLAYER_RED;
+    setCurrentPlayer(nextPlayer);
+    startingPlayer.current = nextPlayer;
+
     resetBoard();
     resetTimer();
     resetWinner();
   }
 
   function switchPlayer() {
-    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+    setCurrentPlayer(currentPlayer === PLAYER_RED ? PLAYER_YELLOW : PLAYER_RED);
   }
 
   function resetTimer() {
@@ -168,8 +177,8 @@ export default function Game({ togglePlaying }) {
           </PillButton>
         </Header>
         <PlayerScores>
-          <ScoreDisplay player={1} score={playerOneScore} />
-          <ScoreDisplay player={2} score={playerTwoScore} />
+          <ScoreDisplay player={PLAYER_RED} score={playerOneScore} />
+          <ScoreDisplay player={PLAYER_YELLOW} score={playerTwoScore} />
         </PlayerScores>
         <BoardWrapper>
           <Board
@@ -200,9 +209,9 @@ const Wrapper = styled.div`
     width: 100%;
     height: 236px;
     background: ${({ winner }) => {
-      if (winner === 1) {
+      if (winner === PLAYER_RED) {
         return "var(--color-secondary)";
-      } else if (winner === 2) {
+      } else if (winner === PLAYER_YELLOW) {
         return "var(--color-tertiary)";
       } else {
         return "var(--color-primary)";
