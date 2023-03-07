@@ -1,6 +1,10 @@
 # Connect Four
 
-Connect Four game built using ReactJS, StyledComponents, and RadixUI primitives.
+## Built with
+
+- [React](https://reactjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [RadixUI](https://www.radix-ui.com/)
 
 ### Mobile
 
@@ -19,13 +23,3 @@ Connect Four game built using ReactJS, StyledComponents, and RadixUI primitives.
 ### Links
 
 - Live Site URL: [https://nurira.github.io/connect-four](https://nurira.github.io/connect-four)
-
-## Built with
-
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/)
-- [Styled Components](https://styled-components.com/)
