@@ -5,9 +5,9 @@ import Text from "../Text";
 export default function ScoreDisplay({ score, player }) {
   return (
     <Wrapper player={player}>
-      <PlayerTag size="xs" forwardedAs="p">
+      <PlayerName size="xs" forwardedAs="p">
         Player {player}
-      </PlayerTag>
+      </PlayerName>
       <Score>{score}</Score>
       <PlayerAvatar
         src={`./assets/player-${player === 1 ? "one" : "two"}.svg`}
@@ -51,7 +51,8 @@ const Wrapper = styled.div`
   }
 `;
 
-const PlayerTag = styled(Text)`
+const PlayerName = styled(Text)`
+  color: var(--color-black);
   text-transform: uppercase;
   text-align: center;
 
