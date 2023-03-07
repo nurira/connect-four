@@ -6,9 +6,9 @@ import Button from "./Button";
 import { PillButton } from "./Button";
 import { BREAKPOINTS } from "./GlobalStyles";
 
-export default function GameMenu({ onRestart, onQuit }) {
+export default function GameMenu({ onRestart, onQuit, onOpen }) {
   return (
-    <Dialog.Root>
+    <Dialog.Root onOpenChange={onOpen}>
       <Dialog.Trigger asChild>
         <PillButton>
           <Text size="xs">Menu</Text>

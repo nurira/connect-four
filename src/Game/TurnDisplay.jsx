@@ -2,11 +2,17 @@ import styled from "styled-components/macro";
 import { BREAKPOINTS } from "../GlobalStyles";
 import Text from "../Text";
 
-export default function TurnDisplay({ player }) {
+export default function TurnDisplay({ player, timer }) {
   return (
     <Wrapper player={player}>
       <TurnText size="xs">Player {player}'s Turn</TurnText>
-      <Timer size="lg">14s</Timer>
+      <Timer size="lg">{timer}s</Timer>
+
+      {/* preload */}
+      <img
+        src="./assets/turn-background-yellow.svg"
+        style={{ display: "none" }}
+      />
     </Wrapper>
   );
 }

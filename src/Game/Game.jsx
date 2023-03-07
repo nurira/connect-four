@@ -9,42 +9,82 @@ import TurnDisplay from "./TurnDisplay";
 import { PillButton } from "../Button/PillButton";
 import GameMenu from "../GameMenu";
 
-function createNewBoard() {
-  return Array(7)
-    .fill(null)
-    .map((column) => []);
-}
+import useToggle from "../hooks/useToggle";
+
+const TIME_PER_TURN = 15;
 
 export default function Game({ togglePlaying }) {
   const [currentPlayer, setCurrentPlayer] = React.useState(1);
-  const [boardState, setBoardState] = React.useState(createNewBoard());
+  const [boardState, setBoardState] = React.useState(
+    Array(7)
+      .fill(null)
+      .map((column) => [])
+  );
   const [playerOneScore, setPlayerOneScore] = React.useState(0);
   const [playerTwoScore, setPlayerTwoScore] = React.useState(0);
+  const [timeRemaining, setTimeRemaining] = React.useState(TIME_PER_TURN);
+  const [paused, togglePaused] = useToggle(false);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      if (!paused) {
+        setTimeRemaining((time) => {
+          const nextTimeRemaining = time - 1;
+          if (nextTimeRemaining < 0) {
+            switchPlayer();
+            return TIME_PER_TURN;
+          }
+          return nextTimeRemaining;
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeRemaining, paused]);
 
   function addToColumn(colNum) {
     if (boardState[colNum].length >= 6) return;
-    // console.log(`ADDING TO COLUMN ${colNum}`);
 
     const nextBoardState = [];
     boardState.forEach((column) => nextBoardState.push([...column]));
+    nextBoardState[colNum].push(currentPlayer);
 
-    const column = nextBoardState[colNum];
-    column.push(currentPlayer);
-
-    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+    switchPlayer();
+    resetTimer();
     setBoardState(nextBoardState);
   }
 
   function handleRestart() {
     console.log("RESTART GAME");
-    setBoardState(createNewBoard());
+    resetBoard();
+    resetTimer();
+  }
+
+  function switchPlayer() {
+    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+  }
+
+  function resetTimer() {
+    setTimeRemaining(TIME_PER_TURN);
+  }
+
+  function resetBoard() {
+    setBoardState(
+      Array(7)
+        .fill(null)
+        .map((column) => [])
+    );
   }
 
   return (
     <Wrapper>
       <MaxWidthContainer>
         <Header>
-          <GameMenu onRestart={handleRestart} onQuit={togglePlaying} />
+          <GameMenu
+            onRestart={handleRestart}
+            onQuit={togglePlaying}
+            onOpen={togglePaused}
+          />
           <Logo size={46} />
           <PillButton onClick={handleRestart}>
             <Text size="xs" style={{ color: "white" }}>
@@ -62,7 +102,7 @@ export default function Game({ togglePlaying }) {
             onClick={addToColumn}
             player={currentPlayer}
           />
-          <TurnDisplay player={currentPlayer} />
+          <TurnDisplay player={currentPlayer} timer={timeRemaining} />
         </BoardWrapper>
       </MaxWidthContainer>
     </Wrapper>
