@@ -1,40 +1,26 @@
 # Connect Four
 
-This is a solution to the [Connect Four game challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/connect-four-game-6G8QVH923s). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+Connect Four game built using ReactJS, StyledComponents, and RadixUI primitives.
 
-## Table of contents
+### Mobile
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-  - [Built with](#built-with)
-  - [Author](#author)
+<img src="./screenshots/mobile-1.png" width="350">
+<img src="./screenshots/mobile-2.png" width="350">
 
-## Overview
+### Tablet
 
-### The challenge
+<img src="./screenshots/tablet-1.png" width="400">
+<img src="./screenshots/tablet-2.png" width="400">
 
-Users should be able to:
+### Desktop
 
-- View the game rules
-- Play a game of Connect Four against another human player (alternating turns on the same computer)
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
-- **Bonus**: See the discs animate into their position when a move is made
-- **Bonus**: Play against the computer
-
-### Screenshot
-
-![](./screenshot.jpg)
+<img src="./screenshots/desktop-1.png" width="400">
 
 ### Links
 
 - Live Site URL: [https://nurira.github.io/connect-four](https://nurira.github.io/connect-four)
 
-## My process
-
-### Built with
+## Built with
 
 - Semantic HTML5 markup
 - CSS custom properties
@@ -43,9 +29,3 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/)
 - [Styled Components](https://styled-components.com/)
-
-## Author
-
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
