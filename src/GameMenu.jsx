@@ -23,9 +23,11 @@ export default function GameMenu({ onRestart, onQuit }) {
               <Text size="md">Continue Game</Text>
             </Button>
           </Dialog.Close>
-          <Button onClick={onRestart}>
-            <Text size="md">Restart</Text>
-          </Button>
+          <Dialog.Close asChild>
+            <Button onClick={onRestart}>
+              <Text size="md">Restart</Text>
+            </Button>
+          </Dialog.Close>
           <Button type="secondary" onClick={onQuit}>
             <Text size="md" style={{ color: "var(--color-white)" }}>
               Quit Game
