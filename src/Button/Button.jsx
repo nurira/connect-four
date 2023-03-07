@@ -25,7 +25,7 @@ const BaseButton = styled.button`
   border: var(--border);
   border-color: var(--color-black);
   text-transform: uppercase;
-  filter: var(--drop-shadow-black);
+  box-shadow: var(--drop-shadow-black);
   background: var(--color-white);
   color: var(--color-black);
   user-select: none;
@@ -33,7 +33,7 @@ const BaseButton = styled.button`
 
   &:hover,
   &:active {
-    filter: var(--drop-shadow-primary);
+    box-shadow: var(--drop-shadow-primary);
     border-color: var(--color-primary);
   }
 `;

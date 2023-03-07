@@ -52,7 +52,6 @@ const Wrapper = styled.button`
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
-  filter: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 

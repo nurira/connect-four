@@ -23,8 +23,8 @@ const GlobalStyles = createGlobalStyle`
     --font-weight-bold: 700;
 
     --border: 3px solid;
-    --drop-shadow-black: drop-shadow(0 10px 0 var(--color-black));
-    --drop-shadow-primary: drop-shadow(0 10px 0 var(--color-primary));
+    --drop-shadow-black: 0 10px 0 var(--color-black);
+    --drop-shadow-primary: 0 10px 0 var(--color-primary);
   }
 
   *,

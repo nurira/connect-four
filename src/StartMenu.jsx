@@ -39,7 +39,7 @@ const Wrapper = styled.div`
     border: var(--border);
     border-color: var(--color-black);
     border-radius: 40px;
-    filter: var(--drop-shadow-black);
+    box-shadow: var(--drop-shadow-black);
     padding-inline: 37px;
   }
 `;
