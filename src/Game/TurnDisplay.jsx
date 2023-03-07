@@ -26,7 +26,6 @@ const Wrapper = styled.div`
   width: 197px;
   height: 165px;
   margin: 0 auto;
-  transform: translateY(-28px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,10 +33,6 @@ const Wrapper = styled.div`
 
   color: ${({ player }) =>
     player === 1 ? "var(--color-white)" : "var(--color-black)"};
-
-  @media ${BREAKPOINTS.tablet} {
-    transform: translateY(-53px);
-  }
 `;
 
 const TurnText = styled(Text)`
