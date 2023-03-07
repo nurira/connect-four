@@ -42,20 +42,85 @@ export default function Game({ togglePlaying }) {
     return () => clearInterval(timer);
   }, [timeRemaining, paused]);
 
+  function checkForWin(board, colIndex) {
+    // check starting from the last piece placed on the given column
+    const winCondition = (board[colIndex].at(-1) + "").repeat(4);
+
+    const rowIndex = board[colIndex].length - 1;
+    const rowPieces = [];
+    board.forEach((column) => {
+      rowPieces.push(column[rowIndex]);
+    });
+
+    const diagonalChecks = [];
+
+    // CHECK DIAGONAL 1
+    let diagonalPieces = [];
+    let [currRow, currCol] = [rowIndex, colIndex];
+    while (currCol < 7 && currRow < 6) {
+      diagonalPieces.push(board[currCol][currRow]);
+      currRow++;
+      currCol++;
+    }
+
+    // decrement once to prevent double counting start position
+    [currRow, currCol] = [rowIndex - 1, colIndex - 1];
+    while (currCol >= 0 && currRow >= 0) {
+      diagonalPieces.unshift(board[currCol][currRow]);
+      currRow--;
+      currCol--;
+    }
+    diagonalChecks.push(diagonalPieces.join(""));
+
+    // CHECK DIAGONAL 2
+    diagonalPieces = [];
+    [currRow, currCol] = [rowIndex, colIndex];
+    while (currCol >= 0 && currRow < 6) {
+      diagonalPieces.push(board[currCol][currRow]);
+      currRow++;
+      currCol--;
+    }
+
+    // decrement once to prevent double counting start position
+    [currRow, currCol] = [rowIndex - 1, colIndex + 1];
+    while (currCol < 7 && currRow >= 0) {
+      diagonalPieces.unshift(board[currCol][currRow]);
+      currRow--;
+      currCol++;
+    }
+    diagonalChecks.push(diagonalPieces.join(""));
+
+    const columnCheck = board[colIndex].join("");
+    const rowCheck = rowPieces.join("");
+
+    if (columnCheck.includes(winCondition)) return true;
+    if (rowCheck.includes(winCondition)) return true;
+    if (diagonalChecks[0].includes(winCondition)) return true;
+    if (diagonalChecks[1].includes(winCondition)) return true;
+
+    return false;
+  }
+
   function addToColumn(colNum) {
     if (boardState[colNum].length >= 6) return;
+    if (paused) return;
 
     const nextBoardState = [];
     boardState.forEach((column) => nextBoardState.push([...column]));
     nextBoardState[colNum].push(currentPlayer);
 
-    switchPlayer();
-    resetTimer();
+    if (checkForWin(nextBoardState, colNum)) {
+      console.log("WINNER", currentPlayer);
+      togglePaused();
+    } else {
+      switchPlayer();
+      resetTimer();
+    }
     setBoardState(nextBoardState);
   }
 
   function handleRestart() {
-    console.log("RESTART GAME");
+    if (paused) togglePaused();
     resetBoard();
     resetTimer();
   }
