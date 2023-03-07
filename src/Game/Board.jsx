@@ -38,7 +38,11 @@ export default function Board({ boardState, onClick, player }) {
         {Array(7)
           .fill(null)
           .map((col, idx) => (
-            <ClickColumn player={player} onClick={() => onClick(idx)} />
+            <ClickColumn
+              key={idx}
+              player={player}
+              onClick={() => onClick(idx)}
+            />
           ))}
       </ClickLayer>
     </Wrapper>
