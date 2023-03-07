@@ -6,6 +6,7 @@ import Logo from "../Logo";
 import Board from "./Board";
 import ScoreDisplay from "./ScoreDisplay";
 import TurnDisplay from "./TurnDisplay";
+import WinDisplay from "./WinDisplay";
 import { PillButton } from "../Button/PillButton";
 import GameMenu from "../GameMenu";
 
@@ -14,6 +15,7 @@ import useToggle from "../hooks/useToggle";
 const TIME_PER_TURN = 15;
 
 export default function Game({ togglePlaying }) {
+  const [winner, setWinner] = React.useState(null);
   const [currentPlayer, setCurrentPlayer] = React.useState(1);
   const [boardState, setBoardState] = React.useState(
     Array(7)
@@ -110,7 +112,10 @@ export default function Game({ togglePlaying }) {
     nextBoardState[colNum].push(currentPlayer);
 
     if (checkForWin(nextBoardState, colNum)) {
-      console.log("WINNER", currentPlayer);
+      setWinner(currentPlayer);
+      currentPlayer === 1
+        ? setPlayerOneScore(playerOneScore + 1)
+        : setPlayerTwoScore(playerTwoScore + 1);
       togglePaused();
     } else {
       switchPlayer();
@@ -123,6 +128,7 @@ export default function Game({ togglePlaying }) {
     if (paused) togglePaused();
     resetBoard();
     resetTimer();
+    resetWinner();
   }
 
   function switchPlayer() {
@@ -131,6 +137,10 @@ export default function Game({ togglePlaying }) {
 
   function resetTimer() {
     setTimeRemaining(TIME_PER_TURN);
+  }
+
+  function resetWinner() {
+    setWinner(null);
   }
 
   function resetBoard() {
@@ -142,7 +152,7 @@ export default function Game({ togglePlaying }) {
   }
 
   return (
-    <Wrapper>
+    <Wrapper winner={winner}>
       <MaxWidthContainer>
         <Header>
           <GameMenu
@@ -167,7 +177,13 @@ export default function Game({ togglePlaying }) {
             onClick={addToColumn}
             player={currentPlayer}
           />
-          <TurnDisplay player={currentPlayer} timer={timeRemaining} />
+          <GameDisplays>
+            {winner !== null ? (
+              <WinDisplay winner={winner} onPlayAgain={handleRestart} />
+            ) : (
+              <TurnDisplay player={currentPlayer} timer={timeRemaining} />
+            )}
+          </GameDisplays>
         </BoardWrapper>
       </MaxWidthContainer>
     </Wrapper>
@@ -183,7 +199,16 @@ const Wrapper = styled.div`
     content: "";
     width: 100%;
     height: 236px;
-    background: var(--color-primary);
+    background: ${({ winner }) => {
+      if (winner === 1) {
+        return "var(--color-secondary)";
+      } else if (winner === 2) {
+        return "var(--color-tertiary)";
+      } else {
+        return "var(--color-primary)";
+      }
+    }};
+    transition: background 0.2s ease;
     position: absolute;
     border-radius: 60px 60px 0 0;
     bottom: 0;
@@ -238,4 +263,16 @@ const PlayerScores = styled.div`
 
 const BoardWrapper = styled.div`
   isolation: isolate;
+`;
+
+const GameDisplays = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform: translateY(-28px);
+
+  @media ${BREAKPOINTS.tablet} {
+    transform: translateY(-52px);
+  }
 `;
