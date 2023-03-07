@@ -9,26 +9,60 @@ import TurnDisplay from "./TurnDisplay";
 import { PillButton } from "../Button/PillButton";
 import GameMenu from "../GameMenu";
 
+function createNewBoard() {
+  return Array(7)
+    .fill(null)
+    .map((column) => []);
+}
+
 export default function Game({ togglePlaying }) {
+  const [currentPlayer, setCurrentPlayer] = React.useState(1);
+  const [boardState, setBoardState] = React.useState(createNewBoard());
+  const [playerOneScore, setPlayerOneScore] = React.useState(0);
+  const [playerTwoScore, setPlayerTwoScore] = React.useState(0);
+
+  function addToColumn(colNum) {
+    if (boardState[colNum].length >= 6) return;
+    // console.log(`ADDING TO COLUMN ${colNum}`);
+
+    const nextBoardState = [];
+    boardState.forEach((column) => nextBoardState.push([...column]));
+
+    const column = nextBoardState[colNum];
+    column.push(currentPlayer);
+
+    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+    setBoardState(nextBoardState);
+  }
+
+  function handleRestart() {
+    console.log("RESTART GAME");
+    setBoardState(createNewBoard());
+  }
+
   return (
     <Wrapper>
       <MaxWidthContainer>
         <Header>
-          <GameMenu onRestart={togglePlaying} onQuit={togglePlaying} />
+          <GameMenu onRestart={handleRestart} onQuit={togglePlaying} />
           <Logo size={46} />
-          <PillButton>
+          <PillButton onClick={handleRestart}>
             <Text size="xs" style={{ color: "white" }}>
               Restart
             </Text>
           </PillButton>
         </Header>
         <PlayerScores>
-          <ScoreDisplay player={1} score={12} />
-          <ScoreDisplay player={2} score={23} />
+          <ScoreDisplay player={1} score={playerOneScore} />
+          <ScoreDisplay player={2} score={playerTwoScore} />
         </PlayerScores>
         <BoardWrapper>
-          <Board />
-          <TurnDisplay player={2} />
+          <Board
+            boardState={boardState}
+            onClick={addToColumn}
+            player={currentPlayer}
+          />
+          <TurnDisplay player={currentPlayer} />
         </BoardWrapper>
       </MaxWidthContainer>
     </Wrapper>
@@ -50,8 +84,11 @@ const Wrapper = styled.div`
     bottom: 0;
     left: 0;
 
+    @media ${BREAKPOINTS.tablet} {
+    }
+
     @media ${BREAKPOINTS.desktop} {
-      height: 200px;
+      height: 25%;
     }
   }
 `;
@@ -70,6 +107,14 @@ const MaxWidthContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   gap: 47px;
+
+  @media ${BREAKPOINTS.tablet} {
+    gap: 32px;
+  }
+
+  @media ${BREAKPOINTS.desktop} {
+    gap: 56px;
+  }
 `;
 
 const PlayerScores = styled.div`
